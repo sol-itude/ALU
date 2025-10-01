@@ -3,7 +3,7 @@ module testbench;
   
   // 2. 신호선 만들기 (엔진에 연결할 전선)
   logic a, b;
-  logic out;
+  wire out;
   
   // 3. 설계한 모듈 불러와서 연결하기 (엔진을 테스트 장비에 올리기)
   AND_gate dut (
