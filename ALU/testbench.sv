@@ -2,18 +2,18 @@
 
 module testbench;
 
-  // --- ½ÅÈ£ ¼±¾ğ (reg¿Í wire ¸íÈ®È÷ ±¸ºĞ) ---
+  // --- ì‹ í˜¸ ì„ ì–¸ (regì™€ wire ëª…í™•íˆ êµ¬ë¶„) ---
 
-  // Å×½ºÆ®º¥Ä¡°¡ Á÷Á¢ °ªÀ» ÇÒ´çÇÏ°í 'ÀúÀå'ÇØ¾ß ÇÏ´Â ½ÅÈ£µé (DUTÀÇ ÀÔ·Â)
-  // '½ºÀ§Ä¡' ¿ªÇÒÀÌ¹Ç·Î reg Å¸ÀÔÀ¸·Î ¼±¾ğÇÕ´Ï´Ù.
+  // í…ŒìŠ¤íŠ¸ë²¤ì¹˜ê°€ ì§ì ‘ ê°’ì„ í• ë‹¹í•˜ê³  'ì €ì¥'í•´ì•¼ í•˜ëŠ” ì‹ í˜¸ë“¤ (DUTì˜ ì…ë ¥)
+  // 'ìŠ¤ìœ„ì¹˜' ì—­í• ì´ë¯€ë¡œ reg íƒ€ì…ìœ¼ë¡œ ì„ ì–¸í•©ë‹ˆë‹¤.
   reg [31:0] A_tb, B_tb;
   reg [3:0]  ALU_control_tb;
 
-  // DUTÀÇ Ãâ·Â °á°ú¸¦ ¼öµ¿ÀûÀ¸·Î 'Àü´Ş'¹Ş±â¸¸ ÇÏ´Â ½ÅÈ£
-  // '·¥ÇÁ' ¿ªÇÒÀÌ¹Ç·Î wire Å¸ÀÔÀ¸·Î ¼±¾ğÇÕ´Ï´Ù.
+  // DUTì˜ ì¶œë ¥ ê²°ê³¼ë¥¼ ìˆ˜ë™ì ìœ¼ë¡œ 'ì „ë‹¬'ë°›ê¸°ë§Œ í•˜ëŠ” ì‹ í˜¸
+  // 'ë¨í”„' ì—­í• ì´ë¯€ë¡œ wire íƒ€ì…ìœ¼ë¡œ ì„ ì–¸í•©ë‹ˆë‹¤.
   wire [31:0] result_tb;
 
-  // --- DUT ÀÎ½ºÅÏ½ºÈ­ ---
+  // --- DUT ì¸ìŠ¤í„´ìŠ¤í™” ---
   ALU dut (
     .ALU_A      (A_tb),
     .ALU_B      (B_tb),
@@ -21,11 +21,11 @@ module testbench;
     .result     (result_tb)
   );
 
-  // --- ½Ã¹Ä·¹ÀÌ¼Ç ½Ã³ª¸®¿À ---
+  // --- ì‹œë®¬ë ˆì´ì…˜ ì‹œë‚˜ë¦¬ì˜¤ ---
   initial begin
-    // Vivado¿¡¼­´Â $dumpfile, $dumpvars°¡ ÇÊ¿ä ¾ø½À´Ï´Ù.
+    // Vivadoì—ì„œëŠ” $dumpfile, $dumpvarsê°€ í•„ìš” ì—†ìŠµë‹ˆë‹¤.
 
-    // --- Å×½ºÆ® ÄÉÀÌ½º 1: AND ¿¬»ê ---
+    // --- í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ 1: AND ì—°ì‚° ---
     $display("--- Test Case 1: AND Operation ---");
     A_tb          = 32'hFFFF0000;
     B_tb          = 32'h00FFFF00;
@@ -34,14 +34,14 @@ module testbench;
 
     $display("At time %0t: A=%h, B=%h, Control=%b => Result=%h", $time, A_tb, B_tb, ALU_control_tb, result_tb);
 
-    // --- Å×½ºÆ® ÄÉÀÌ½º 2: OR ¿¬»ê ---
+    // --- í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ 2: OR ì—°ì‚° ---
     $display("\n--- Test Case 2: OR Operation ---");
     ALU_control_tb = 4'b0001;
     #10;
 
     $display("At time %0t: A=%h, B=%h, Control=%b => Result=%h", $time, A_tb, B_tb, ALU_control_tb, result_tb);
 
-    // --- Å×½ºÆ® ÄÉÀÌ½º 3: µ¡¼À(ADD) ¿¬»ê (¹Ì±¸Çö »óÅÂ Å×½ºÆ®) ---
+    // --- í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ 3: ë§ì…ˆ(ADD) ì—°ì‚° (ë¯¸êµ¬í˜„ ìƒíƒœ í…ŒìŠ¤íŠ¸) ---
     $display("\n--- Test Case 3: ADD Operation (Default Case) ---");
     ALU_control_tb = 4'b0010;
     #10;
@@ -50,7 +50,6 @@ module testbench;
 
     #10;
         
-    $finish;
   end
 
 endmodule

@@ -28,7 +28,7 @@ module ALU(
             4'b0000 : result = and_res;
             4'b0001 : result = or_res;
             
-            default : result = 32'bx; // ±âº»°ª x -> Á¤ÀÇµÇÁö ¾ÊÀ½.
+            default : result = 32'bx; // ê¸°ë³¸ê°’ x -> ì •ì˜ë˜ì§€ ì•ŠìŒ.
         endcase
         
     end
